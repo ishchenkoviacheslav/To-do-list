@@ -19,9 +19,10 @@ namespace To_do_list
     /// </summary>
     public partial class TaskDetails : Window
     {
-        public TaskDetails()
+        public TaskDetails(TaskViewModel task)
         {
             InitializeComponent();
+            DataContext = task;
         }
     }
 }

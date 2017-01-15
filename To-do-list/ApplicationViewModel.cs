@@ -29,7 +29,7 @@ namespace To_do_list
                 return detailsCommand ??
                   (detailsCommand = new RelayCommand(obj =>
                   {
-                      TaskDetails taskDtls = new TaskDetails();
+                      TaskDetails taskDtls = new TaskDetails(TaskViewModel task);
                       taskDtls.ShowDialog();
                   }));
             }

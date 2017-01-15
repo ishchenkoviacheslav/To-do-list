@@ -25,11 +25,5 @@ namespace To_do_list
             InitializeComponent();
             DataContext = new ApplicationViewModel();
         }
-
-        //private void ListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        //{
-        //    TaskDetails taskDtls = new TaskDetails();
-        //    taskDtls.ShowDialog();
-        //}
     }
 }

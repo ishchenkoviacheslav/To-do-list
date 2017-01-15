@@ -7,7 +7,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 namespace To_do_list
 {
-    class TaskViewModel : INotifyPropertyChanged
+  public  class TaskViewModel : INotifyPropertyChanged
     {
         private task currentTask;
         public TaskViewModel(task curTask)
