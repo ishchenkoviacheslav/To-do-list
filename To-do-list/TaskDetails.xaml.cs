@@ -10,26 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace To_do_list
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for TaskDetails.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class TaskDetails : Window
     {
-        public MainWindow()
+        public TaskDetails()
         {
             InitializeComponent();
-            DataContext = new ApplicationViewModel();
         }
-
-        //private void ListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        //{
-        //    TaskDetails taskDtls = new TaskDetails();
-        //    taskDtls.ShowDialog();
-        //}
     }
 }

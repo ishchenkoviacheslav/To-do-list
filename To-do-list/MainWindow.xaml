@@ -4,9 +4,35 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:To_do_list"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+    </Window.Resources>
     <Grid>
-        
+        <!--<Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>-->
+
+        <ListBox Grid.Column="0" ItemsSource="{Binding Tasks}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding DetailsCommand}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="5" >
+                        <TextBlock FontSize="18" Text="{Binding Path=Description}"/>
+                        <Label FontSize="18" Content="{Binding Path=Priority}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
     </Grid>
 </Window>
