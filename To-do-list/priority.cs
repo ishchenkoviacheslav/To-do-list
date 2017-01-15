@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace To_do_list
 {
-    enum priority
+    public enum priority
     {
         high,
         middle,

@@ -7,7 +7,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 namespace To_do_list
 {
-    class task: INotifyPropertyChanged
+   public class task: INotifyPropertyChanged
     {
         private string description;
         public string Description

@@ -7,7 +7,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 namespace To_do_list
 {
-  public  class TaskViewModel : INotifyPropertyChanged
+    public class TaskViewModel : INotifyPropertyChanged
     {
         private task currentTask;
         public TaskViewModel(task curTask)
@@ -39,6 +39,32 @@ namespace To_do_list
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+
+        private RelayCommand priorityCommand;
+        public RelayCommand PriorityCommand
+        {
+            get
+            {
+                return priorityCommand ??
+                  (priorityCommand = new RelayCommand(obj =>
+                  {
+                      switch ((string)obj)
+                      {
+                          case  "0":
+                              currentTask.Priority = priority.high;
+                              break;
+                          case "1":
+                              currentTask.Priority = priority.middle;
+                              break;
+                          case "2":
+                              currentTask.Priority = priority.low;
+                              break;
+                          default:
+                              break;
+                      }
+                  }));
+            }
         }
     }
 }

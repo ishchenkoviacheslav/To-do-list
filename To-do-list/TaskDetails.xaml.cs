@@ -23,6 +23,20 @@ namespace To_do_list
         {
             InitializeComponent();
             DataContext = task;
+            switch (task.Priority)
+            {
+                case priority.high:
+                    this.rbHigh.IsChecked = true;
+                    break;
+                case priority.middle:
+                    this.rbMiddle.IsChecked = true;
+                    break;
+                case priority.low:
+                    this.rbLow.IsChecked = true;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

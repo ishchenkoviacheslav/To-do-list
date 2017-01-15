@@ -3,13 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace To_do_list
 {
-    class ApplicationViewModel
+    class ApplicationViewModel: INotifyPropertyChanged
     {
         public List<task> Tasks { get; set; }
-
+        private task selectedTask;
+        public task CurrentTask
+        {
+            get
+            {
+                return selectedTask;
+            }
+            set
+            {
+                selectedTask = value;
+                OnPropertyChanged("CurrentTask");
+            }
+        }
         public ApplicationViewModel()
         {
             Tasks = new List<task>()
@@ -21,6 +35,13 @@ namespace To_do_list
             };
         }
 
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
         private RelayCommand detailsCommand;
         public RelayCommand DetailsCommand
         {
@@ -29,8 +50,14 @@ namespace To_do_list
                 return detailsCommand ??
                   (detailsCommand = new RelayCommand(obj =>
                   {
-                      TaskDetails taskDtls = new TaskDetails(TaskViewModel task);
-                      taskDtls.ShowDialog();
+                      task task = obj as task;
+                      TaskViewModel taskViewModel = new TaskViewModel(task);
+                      if ( taskViewModel != null)
+                      {
+                          TaskDetails taskDtls = new TaskDetails(taskViewModel);
+                          taskDtls.ShowDialog();
+                      }
+                      
                   }));
             }
         }

@@ -13,15 +13,15 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <!--<Grid.RowDefinitions>
+        <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>-->
+            <RowDefinition Height="0.2*"/>
+        </Grid.RowDefinitions>
 
-        <ListBox Grid.Column="0" ItemsSource="{Binding Tasks}">
+        <ListBox Grid.Column="0" ItemsSource="{Binding Tasks}" SelectedItem="{Binding CurrentTask}">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
-                    <i:InvokeCommandAction Command="{Binding DetailsCommand}" />
+                    <i:InvokeCommandAction Command="{Binding DetailsCommand}" CommandParameter="{Binding CurrentTask}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
             <ListBox.ItemTemplate>
