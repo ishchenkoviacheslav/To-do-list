@@ -61,6 +61,38 @@ namespace To_do_list
                   }));
             }
         }
+        private RelayCommand addTask;
+        public RelayCommand AddTask
+        {
+            get
+            {
+                return addTask ??
+                  (addTask = new RelayCommand(obj =>
+                  {
+                      task newTask = new task() { Description = "some task", Priority = priority.low };
+                      Tasks.Add(newTask);
+                      selectedTask = newTask;
+                  }));
+            }
+        }
 
+        private RelayCommand removeTask;
+        public RelayCommand RemoveTask
+        {
+            get
+            {
+                return removeTask??
+                  (removeTask = new RelayCommand(obj =>
+                  {
+                      task removingTask = obj as task;
+                      if (removingTask != null)
+                      {
+                          Tasks.Remove(removingTask);
+                      }
+                  },
+                      (obj=>Tasks.Count > 0)
+                  ));
+            }
+        }
     }
 }
