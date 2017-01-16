@@ -9,7 +9,7 @@
         Title="MainWindow" Height="350" Width="525">
     <Window.Resources>
         <Style TargetType="TextBox">
-            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontSize" Value="18" />
         </Style>
     </Window.Resources>
     <Grid>
@@ -34,8 +34,8 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <Button Margin="5" Command="{Binding AddTask}">Add</Button>
-            <Button Margin="5" Command="{Binding RemoveTask}" CommandParameter="{Binding CurrentTask}">Remove</Button>
+            <Button Margin="5" Width="50" Command="{Binding AddTask}">Add</Button>
+            <Button Margin="5" Width="50" Command="{Binding RemoveTask}" CommandParameter="{Binding CurrentTask}">Remove</Button>
         </StackPanel>
         
     </Grid>

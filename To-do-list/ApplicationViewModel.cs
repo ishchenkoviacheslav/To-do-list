@@ -36,10 +36,8 @@ namespace To_do_list
             //sorting by priority and rewrite.
             Tasks = new ObservableCollection<task>(Tasks.OrderBy(
                 tsk =>  (int)tsk.Priority).ToList());
-
         }
-
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")
         {
@@ -75,9 +73,6 @@ namespace To_do_list
                   {
                       task newTask = new task() { Description = "some task", Priority = priority.low };
                       Tasks.Insert(0, newTask);
-                      //sorting by priority and rewrite.
-                      //      Tasks = new ObservableCollection<task>(Tasks.OrderBy(
-                      //tsk => (int)tsk.Priority).ToList());
                       selectedTask = newTask;
                   }));
             }
