@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-
+using System.Collections.ObjectModel;
 namespace To_do_list
 {
     class ApplicationViewModel: INotifyPropertyChanged
     {
-        public List<task> Tasks { get; set; }
+        public ObservableCollection<task> Tasks { get; set; }
         private task selectedTask;
         public task CurrentTask
         {
@@ -26,13 +26,17 @@ namespace To_do_list
         }
         public ApplicationViewModel()
         {
-            Tasks = new List<task>()
+            Tasks = new ObservableCollection<task>()
             {
                 new task {Description = "meet with friends", Priority = priority.middle },
                 new task {Description = "drink tea", Priority = priority.middle },
                 new task {Description = "call to Grandfather", Priority = priority.high },
                 new task {Description = "answer email", Priority = priority.low }
             };
+            //sorting by priority and rewrite.
+            Tasks = new ObservableCollection<task>(Tasks.OrderBy(
+                tsk =>  (int)tsk.Priority).ToList());
+
         }
 
 
@@ -70,7 +74,10 @@ namespace To_do_list
                   (addTask = new RelayCommand(obj =>
                   {
                       task newTask = new task() { Description = "some task", Priority = priority.low };
-                      Tasks.Add(newTask);
+                      Tasks.Insert(0, newTask);
+                      //sorting by priority and rewrite.
+                      //      Tasks = new ObservableCollection<task>(Tasks.OrderBy(
+                      //tsk => (int)tsk.Priority).ToList());
                       selectedTask = newTask;
                   }));
             }
