@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
 namespace To_do_list
 {
-    class ApplicationViewModel: INotifyPropertyChanged
+    public class ApplicationViewModel : INotifyPropertyChanged
     {
         public ObservableCollection<task> Tasks { get; set; }
         private task selectedTask;
@@ -35,9 +35,9 @@ namespace To_do_list
             };
             //sorting by priority and rewrite.
             Tasks = new ObservableCollection<task>(Tasks.OrderBy(
-                tsk =>  (int)tsk.Priority).ToList());
+                tsk => (int)tsk.Priority).ToList());
         }
-        
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")
         {
@@ -54,12 +54,12 @@ namespace To_do_list
                   {
                       task task = obj as task;
                       TaskViewModel taskViewModel = new TaskViewModel(task);
-                      if ( taskViewModel != null)
+                      if (taskViewModel != null)
                       {
                           TaskDetails taskDtls = new TaskDetails(taskViewModel);
                           taskDtls.ShowDialog();
                       }
-                      
+
                   }));
             }
         }
@@ -83,7 +83,7 @@ namespace To_do_list
         {
             get
             {
-                return removeTask??
+                return removeTask ??
                   (removeTask = new RelayCommand(obj =>
                   {
                       task removingTask = obj as task;
@@ -92,7 +92,7 @@ namespace To_do_list
                           Tasks.Remove(removingTask);
                       }
                   },
-                      (obj=>Tasks.Count > 0)
+                      (obj => Tasks.Count > 0)
                   ));
             }
         }
